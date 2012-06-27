@@ -20,16 +20,6 @@
 			<version>1.6.4</version>
 		</dependency>
 		<dependency>
-			<groupId>jakarta-regexp</groupId>
-			<artifactId>jakarta-regexp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.solr</groupId>
-			<artifactId>solr-velocity</artifactId>
-			<version>3.6.0</version>
-		</dependency>
-		<dependency>
 			<artifactId>servlet-api</artifactId>
 			<groupId>javax.servlet</groupId>
 			<version>2.5</version>
