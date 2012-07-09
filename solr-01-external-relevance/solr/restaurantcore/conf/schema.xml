@@ -124,22 +124,33 @@
 
 	<fields>
 		<!-- general -->
-		<field name="id" type="long" indexed="true" stored="true"
-			multiValued="false" required="true"/>
-		<field name="restaurant_name" type="text" indexed="true" stored="true"
-			multiValued="false" required="false"/>
-		<field name="lat" type="double" indexed="true" stored="true" required="true" multiValued="false" />
-        <field name="lng" type="double" indexed="true" stored="true" required="true" multiValued="false" />
+		<field name="id" type="string" indexed="true" stored="true" multiValued="false" required="true"/>
+		<field name="name" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="address" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="address_extended" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="city" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="state" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="zip" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="tel" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="latitude" type="sfloat" indexed="true" stored="true" required="true" multiValued="false" />
+		<field name="longitude" type="sfloat" indexed="true" stored="true" required="true" multiValued="false" />
+		<field name="website" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="category" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="cusine" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="price" type="tint" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="rating" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="wifi" type="boolean" indexed="true" stored="true" multiValued="false" required="false"/>
+
         <field name="location" type="location" indexed="true" stored="true" required="false" multiValued="false"/>
-		<field name="location_0_coordinate" type="double" indexed="true" stored="true" required="true" multiValued="false" />
-        <field name="location_1_coordinate" type="double" indexed="true" stored="true" required="true" multiValued="false" />
+		<field name="location_0_coordinate" type="double" indexed="true" stored="true" required="false" multiValued="false" />
+        <field name="location_1_coordinate" type="double" indexed="true" stored="true" required="false" multiValued="false" />
 	</fields>
 
 	<!-- field to use to determine and enforce document uniqueness. -->
 	<uniqueKey>id</uniqueKey>
 
 	<!-- field for the QueryParser to use when an explicit fieldname is absent -->
-	<defaultSearchField>restaurant_name</defaultSearchField>
+	<defaultSearchField>name</defaultSearchField>
 
 	<!-- SolrQueryParser configuration: defaultOperator="AND|OR" -->
 	<solrQueryParser defaultOperator="OR" />

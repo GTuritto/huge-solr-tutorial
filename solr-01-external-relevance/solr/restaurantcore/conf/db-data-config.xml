@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataConfig>
+
+	<!-- The first element is the dataSource, in this case an HSQLDB database. 
+		The path to the JDBC driver and the JDBC URL and login credentials are all 
+		specified here. Other permissible attributes include whether or not to autocommit 
+		to Solr,the batchsize used in the JDBC connection, a 'readOnly' flag -->
+
+	<dataSource driver="org.h2.Driver" url="jdbc:h2:~/nyc" user="sa" password="" />
+
+	<!-- a 'document' element follows, containing multiple 'entity' elements. 
+		Note that 'entity' elements can be nested, and this allows the entity relationships 
+		in the sample database to be mirrored here, so that we can generate a denormalized 
+		Solr record which may include multiple features for one item, for instance -->
+
+	<!--The possible attributes for the entity element are described below. 
+		Entity elements may contain one or more 'field' elements, which map the data 
+		source field names to Solr fields, and optionally specify per-field transformations -->
+
+	<document name="bars">
+
+		<!-- this entity is the 'root' entity. -->
+
+		<entity name="bar" pk="ID" query="select * from nyc_bars">
+			<field column="ID" name="id" />
+			<field column="NAME" name="name" />
+			<field column="ADDRESS" name="addres" />
+			<field column="ADDRESS_EXTENDED" name="address_extended" />
+			<field column="CITY" name="city" />
+			<field column="STATE" name="state" />
+			<field column="ZIP" name="zip" />
+			<field column="TEL" name="tel" />
+			<field column="LATITUDE" name="latitude" />
+			<field column="LONGITUDE" name="longitude" />
+			<field column="WEBSITE" name="website" />
+			<field column="CATEGORY" name="category" />
+			<field column="CUISINE" name="cuisine" />
+			<field column="PRICE" name="price" />
+			<field column="RATING" name="rating" />
+			<field column="WIFI" name="wifi" />
+			
+		</entity>
+		
+	</document>
+	
+</dataConfig>
