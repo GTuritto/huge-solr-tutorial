@@ -7,7 +7,7 @@
 		specified here. Other permissible attributes include whether or not to autocommit 
 		to Solr,the batchsize used in the JDBC connection, a 'readOnly' flag -->
 
-	<dataSource driver="org.h2.Driver" url="jdbc:h2:~/nyc" user="sa" password="" />
+	<dataSource driver="org.h2.Driver" url="jdbc:h2:nyc" user="sa" password="" />
 
 	<!-- a 'document' element follows, containing multiple 'entity' elements. 
 		Note that 'entity' elements can be nested, and this allows the entity relationships 
@@ -25,7 +25,7 @@
 		<entity name="bar" pk="ID" query="select * from nyc_bars">
 			<field column="ID" name="id" />
 			<field column="NAME" name="name" />
-			<field column="ADDRESS" name="addres" />
+			<field column="ADDRESS" name="address" />
 			<field column="ADDRESS_EXTENDED" name="address_extended" />
 			<field column="CITY" name="city" />
 			<field column="STATE" name="state" />
