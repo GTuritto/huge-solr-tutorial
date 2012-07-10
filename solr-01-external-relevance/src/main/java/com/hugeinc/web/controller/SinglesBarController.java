@@ -25,7 +25,7 @@ public class SinglesBarController {
   @RequestMapping("")
   public ModelAndView home() {
     ModelAndView singlesBarHome = new ModelAndView("SinglesBarHome");
-    singlesBarHome.addObject("msg", "<a href=\"reindex_bars\">click here to reindex</a>");
+    singlesBarHome.addObject("msg", "Welcome to the huge solr app");
     return singlesBarHome;
   }
   
@@ -35,9 +35,7 @@ public class SinglesBarController {
     barIndexer.indexRestuarants();
     ModelAndView singlesBarHome = new ModelAndView("SinglesBarHome");
     
-    singlesBarHome.addObject("msg", "Success!  Everything has been created. <br>" +
-    		"<a href=\"reindex_bars\">click here to reindex</a><br>" +
-    		"<a href=\"search\">click here to search</a>");
+    singlesBarHome.addObject("msg", "Success!  Everything has been created. <br>");
         
     return singlesBarHome;
   }
