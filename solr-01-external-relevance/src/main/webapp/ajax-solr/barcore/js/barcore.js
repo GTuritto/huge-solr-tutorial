@@ -1,10 +1,12 @@
+var DEFAULT_SORT = 'product(div(female, male), rating, unmarried) desc';
+
 var Manager;
 
 (function ($) {
 
   $(function () {
     Manager = new AjaxSolr.Manager({
-      solrUrl: 'http://evolvingweb.ca/solr/reuters/'
+      solrUrl: 'http://localhost:8080/solr-search/barcore/'
     });
     Manager.addWidget(new AjaxSolr.ResultWidget({
       id: 'result',
@@ -20,7 +22,7 @@ var Manager;
         $('#pager-header').html($('<span/>').text('displaying ' + Math.min(total, offset + 1) + ' to ' + Math.min(total, offset + perPage) + ' of ' + total));
       }
     }));
-    var fields = [ 'topics', 'organisations', 'exchanges' ];
+    var fields = [ 'neighborhood', 'zip', 'cuisine', 'name' ];
     for (var i = 0, l = fields.length; i < l; i++) {
       Manager.addWidget(new AjaxSolr.TagcloudWidget({
         id: fields[i],
@@ -32,14 +34,20 @@ var Manager;
       id: 'currentsearch',
       target: '#selection'
     }));
+    Manager.addWidget(new AjaxSolr.AutocompleteWidget({
+      id: 'text',
+      target: '#search',
+      fields: [ 'neighborhood', 'cuisine', 'name' ]
+    }));
     Manager.init();
     Manager.store.addByValue('q', '*:*');
+    Manager.store.addByValue('rows', 25);
+    Manager.store.addByValue('sort', DEFAULT_SORT);
     var params = {
       facet: true,
-      'facet.field': [ 'topics', 'organisations', 'exchanges' ],
+      'facet.field': [ 'neighborhood', 'zip', 'cuisine', 'name' ],
       'facet.limit': 20,
       'facet.mincount': 1,
-      'f.topics.facet.limit': 50,
       'json.nl': 'map'
     };
     for (var name in params) {
@@ -47,5 +55,14 @@ var Manager;
     }
     Manager.doRequest();
   });
+
+  $.fn.showIf = function (condition) {
+    if (condition) {
+      return this.show();
+    }
+    else {
+      return this.hide();
+    }
+  }
 
 })(jQuery);
