@@ -119,6 +119,8 @@
 				<filter class="solr.RemoveDuplicatesTokenFilterFactory" />
 			</analyzer>
 		</fieldtype>
+		
+		<fieldType name="externalFile" keyField="name_key" defVal="0" stored="false" indexed="false" class="solr.ExternalFileField" valType="pfloat"/>
 
 	</types>
 
@@ -126,6 +128,7 @@
 		<!-- general -->
 		<field name="id" type="string" indexed="true" stored="true" multiValued="false" required="true"/>
 		<field name="name" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="name_key" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="address" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="address_extended" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="city" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
@@ -153,9 +156,13 @@
 		<field name="widowed" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="divorced" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
 
+		<field name="votes" type="externalFile" indexed="false" stored="false" multiValued="false" required="false"/>
+
         <field name="location" type="location" indexed="true" stored="true" required="false" multiValued="false"/>
 		<field name="location_0_coordinate" type="double" indexed="true" stored="true" required="false" multiValued="false" />
         <field name="location_1_coordinate" type="double" indexed="true" stored="true" required="false" multiValued="false" />
+        
+        <copyField source="name" dest="name_key" />
 	</fields>
 
 	<!-- field to use to determine and enforce document uniqueness. -->

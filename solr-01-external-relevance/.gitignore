@@ -3,5 +3,5 @@
 .settings/
 tmp/
 target/
-solr/restaurantcore/data
+solr/restaurantcore/data/index
 *.sw[op]
