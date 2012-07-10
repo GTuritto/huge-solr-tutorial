@@ -31,6 +31,7 @@ public class SinglesBarController {
     singlesBarHome.addObject("msg", "reindex success");
     return singlesBarHome;
   }
-  
+
+
 
 }
