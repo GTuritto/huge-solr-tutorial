@@ -1,5 +1,7 @@
 package com.hugeinc.solr.indexer;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -13,8 +15,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.util.CollectionUtils;
 
-import com.google.common.base.Preconditions;
-
 public abstract class AbstractIndexerService<T> implements Indexer {
   private static final Logger logger = LoggerFactory.getLogger(AbstractIndexerService.class);
   
@@ -24,10 +24,10 @@ public abstract class AbstractIndexerService<T> implements Indexer {
   private final SolrServer server;
   
   public AbstractIndexerService(NamedParameterJdbcTemplate jdbcTemplate, RowMapper<T> rowMapper, String sqlGrabAll, SolrServer server) {
-    this.jdbcTemplate = Preconditions.checkNotNull(jdbcTemplate);
-    this.sqlGrabAll = sqlGrabAll;
-    this.rowMapper = rowMapper;
-    this.server = server;
+    this.jdbcTemplate = checkNotNull(jdbcTemplate);
+    this.sqlGrabAll = checkNotNull(sqlGrabAll);
+    this.rowMapper = checkNotNull(rowMapper);
+    this.server = checkNotNull(server);
   }
   
   public void index() throws SolrServerException, IOException {
@@ -39,6 +39,7 @@ public abstract class AbstractIndexerService<T> implements Indexer {
     }
     
     server.addBeans(docsToAdd);
+    server.commit();
     
   }
 }
