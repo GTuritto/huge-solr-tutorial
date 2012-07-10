@@ -8,6 +8,7 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +29,10 @@ public class SinglesBarSearchController {
     this.searchService = searchService;
   }
 
+  @ModelAttribute("searchForm")
+  public SearchForm getSearchFormObject() {
+    return new SearchForm();
+  }
 
   @RequestMapping(value = "", method = RequestMethod.GET)
   public ModelAndView searchHome() {

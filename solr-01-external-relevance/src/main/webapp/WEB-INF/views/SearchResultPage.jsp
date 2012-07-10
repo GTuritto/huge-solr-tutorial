@@ -19,7 +19,7 @@
 <body>
 	<h2>BarCore searcher - checkmate for finding mates</h2>
  
-	<form:form method="POST" commandName="searchForm" action="search">
+	<form:form method="POST" commandName="searchForm" modelAttribute="searchForm" action="search">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
