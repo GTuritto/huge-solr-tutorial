@@ -37,7 +37,7 @@ var Manager;
     Manager.addWidget(new AjaxSolr.AutocompleteWidget({
       id: 'text',
       target: '#search',
-      fields: [ 'neighborhood', 'cuisine', 'name' ]
+      fields: [ 'neighborhood', 'zip', 'cuisine', 'name' ]
     }));
     Manager.init();
     Manager.store.addByValue('q', '*:*');
@@ -46,7 +46,7 @@ var Manager;
     var params = {
       facet: true,
       'facet.field': [ 'neighborhood', 'zip', 'cuisine', 'name' ],
-      'facet.limit': 20,
+      'facet.limit': 25,
       'facet.mincount': 1,
       'json.nl': 'map'
     };
