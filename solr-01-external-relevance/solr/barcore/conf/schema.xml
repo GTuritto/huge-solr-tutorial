@@ -10,7 +10,7 @@
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
 
-<schema name="restaurantcore" version="1.1">
+<schema name="barcore" version="1.1">
 	<types>
 		<fieldtype name="string" class="solr.StrField"
 			sortMissingLast="true" omitNorms="true" />

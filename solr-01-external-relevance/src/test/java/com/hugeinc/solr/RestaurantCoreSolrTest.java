@@ -19,7 +19,7 @@ public class RestaurantCoreSolrTest extends SolrTestCaseJ4 {
 
   @BeforeClass
   public static void beforeClass() throws Exception {
-    initCore("solrconfig.xml", "schema.xml", "solr/restaurantcore");
+    initCore("solrconfig.xml", "schema.xml", "solr/barcore");
     creatTestRestaurantData();
   }
 
