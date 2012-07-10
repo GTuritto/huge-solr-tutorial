@@ -136,7 +136,7 @@
 		<field name="longitude" type="sfloat" indexed="true" stored="true" required="true" multiValued="false" />
 		<field name="website" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="category" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
-		<field name="cusine" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="cuisine" type="text" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="price" type="tint" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="rating" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="wifi" type="boolean" indexed="true" stored="true" multiValued="false" required="false"/>

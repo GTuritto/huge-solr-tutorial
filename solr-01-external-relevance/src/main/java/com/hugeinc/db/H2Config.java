@@ -13,7 +13,7 @@ import com.google.common.collect.Lists;
 public class H2Config {
   
   private static final String DB_URL = "db.url";
-  private static final String DB_USER = "db.user";
+  private static final String DB_USER = "db.username";
   private static final String DB_PASS = "db.password";
   
   private final StringPair dbUrl;

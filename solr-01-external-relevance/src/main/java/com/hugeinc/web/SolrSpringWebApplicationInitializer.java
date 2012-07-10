@@ -1,4 +1,4 @@
-package com.hugeinc.servlet;
+package com.hugeinc.web;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

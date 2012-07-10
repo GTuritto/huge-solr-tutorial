@@ -1,4 +1,4 @@
-package com.hugeinc.servlet;
+package com.hugeinc.web;
 
 import java.net.MalformedURLException;
 import java.sql.SQLException;
@@ -33,14 +33,14 @@ public class SolrSpringConfiguration {
   @Bean
   public InternalResourceViewResolver configureInternalResourceViewResolver() {
     InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-    resolver.setPrefix("/WEB-INF/views");
+    resolver.setPrefix("/WEB-INF/views/");
     resolver.setSuffix(".jsp");
     return resolver;
   }
 
   @Bean(name = "dataSource")
-  public DataSource configureDatasource() {
-    SimpleDriverDataSource ds = new SimpleDriverDataSource(new Driver(), "jdbc:h2:test;DB_CLOSE_DELAY=-1;MODE=Oracle;TRACE_LEVEL_SYSTEM_OUT=2");
+  public DataSource configureDatasource(@Value("${db.url}") String dbUrl, @Value("${db.username}") String dbUsername, @Value("${db.password}") String dbPassword) {
+    SimpleDriverDataSource ds = new SimpleDriverDataSource(new Driver(), dbUrl, dbUsername, dbPassword);
     return ds;
   }
 
