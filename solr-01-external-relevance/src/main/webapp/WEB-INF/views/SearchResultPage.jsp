@@ -23,15 +23,29 @@
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>
-				<td>Restaurant Name :</td>
+				<td>Restaurant Keywords :</td>
 				<td><form:input path="queryText" /></td>
 				<td><form:errors path="queryText" cssClass="error" /></td>
 			</tr>
 			<tr>
 				<td>Desired gender :</td>
-				<td><form:input path="gender" /></td>
+				<td>
+					<form:radiobutton path="gender" value="male"/>Male<br>
+					<form:radiobutton path="gender" value="female"/>Female<br>
+					<form:radiobutton path="gender" value="both"/>Both<br>
+				</td>
 				<td><form:errors path="gender" cssClass="error" /></td>
 			</tr>
+			<tr>
+				<td>Sort Type</td>
+				<td>
+					<form:radiobutton path="sortType" value="popularity"/>Popularity<br>
+					<form:radiobutton path="sortType" value="courtship"/>Courtship<br>
+					<form:radiobutton path="sortType" value="gold_digger"/>Gold Digger<br>
+				</td>
+			</tr>
+			
+			<form:hidden path="pageNumber" value="${pageNumber }"/>
 			<tr>
 				<td colspan="3"><input type="submit" /></td>
 			</tr>

@@ -15,9 +15,10 @@ public class SearchForm {
   private String[] neighborhoods;
   private Float rating;
   private Float price;
-  private DesiredGenderType desiredGender;
-  private BarSortType barSortType;
-  private Integer pageNumber;
+  private DesiredGenderType desiredGender = DesiredGenderType.FEMALE;
+  private String sortType = "popularity";
+  private BarSortType barSortType = BarSortType.POPULARITY;
+  private Integer pageNumber = 0;
   
   public String getQueryText() {
     return queryText;
@@ -67,6 +68,11 @@ public class SearchForm {
   public void setPageNumber(Integer pageNumber) {
     this.pageNumber = pageNumber;
   }
-  
-  
+  public String getSortType() {
+    return sortType;
+  }
+  public void setSortType(String sortType) {
+    this.sortType = sortType;
+  }
+   
 }

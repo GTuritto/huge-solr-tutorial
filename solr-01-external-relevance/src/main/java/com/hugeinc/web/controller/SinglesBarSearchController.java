@@ -36,15 +36,7 @@ public class SinglesBarSearchController {
 
   @RequestMapping(value = "", method = RequestMethod.GET)
   public ModelAndView searchHome() {
-    ModelAndView searchPage = new ModelAndView("SearchResultPage");
-    Collection<BarData> results;
-    try {
-      results = searchService.search();
-    } catch (SolrServerException e) {
-      throw new BarSearchException("default search failed", e);
-    }
-    searchPage.addObject("results", results);
-    return searchPage;
+    return search(new SearchForm());
   }
   
   @RequestMapping(value = "", method = RequestMethod.POST)
@@ -55,6 +47,10 @@ public class SinglesBarSearchController {
       return bad;
     }
     
+    return search(searchForm);
+  }
+
+  private ModelAndView search(SearchForm searchForm) {
     Collection<BarData> results;
     try {
       results = searchService.search(searchForm);
@@ -63,6 +59,7 @@ public class SinglesBarSearchController {
     }
     ModelAndView searchResultPage = new ModelAndView("SearchResultPage");
     searchResultPage.addObject("results", results);
+    searchResultPage.addObject("pageNumber", searchForm.getPageNumber());
     return searchResultPage;
   }
 }

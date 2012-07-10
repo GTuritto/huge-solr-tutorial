@@ -8,7 +8,7 @@ import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.hugeinc.db.BarDataRowMapper;
@@ -18,7 +18,7 @@ import com.hugeinc.solr.data.BarData;
 public class BarIndexerServiceImpl extends AbstractIndexerService<BarData> implements BarIndexerService {
 
   @Autowired
-  public BarIndexerServiceImpl(NamedParameterJdbcTemplate jdbcTemplate, @Value("${sql}") String sqlGrabAll, SolrServer server) {
+  public BarIndexerServiceImpl(JdbcTemplate jdbcTemplate, @Value("${sql}") String sqlGrabAll, SolrServer server) {
     super(checkNotNull(jdbcTemplate), new BarDataRowMapper(), checkNotNull(sqlGrabAll), checkNotNull(server));
   }
 

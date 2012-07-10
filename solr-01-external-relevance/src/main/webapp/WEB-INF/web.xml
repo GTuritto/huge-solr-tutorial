@@ -166,7 +166,7 @@
 	</listener>
 	<context-param>
 		<param-name>db.url</param-name>
-		<param-value>jdbc:h2:nyc</param-value>
+		<param-value>jdbc:h2:tcp://localhost/mem:nyc</param-value>
 	</context-param>
 	<context-param>
 		<param-name>db.user</param-name>
