@@ -166,7 +166,7 @@
 	</listener>
 	<context-param>
 		<param-name>db.url</param-name>
-		<param-value>jdbc:h2:test</param-value>
+		<param-value>jdbc:h2:nyc</param-value>
 	</context-param>
 	<context-param>
 		<param-name>db.user</param-name>
@@ -174,7 +174,7 @@
 	</context-param>
 	<context-param>
 		<param-name>db.password</param-name>
-		<param-value>sa</param-value>
+		<param-value></param-value>
 	</context-param>
 	<context-param>
 		<param-name>db.tcpServer</param-name>
