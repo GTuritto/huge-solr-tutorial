@@ -8,3 +8,11 @@ TODO: license data
 2) Reindex bars data: http://localhost:8080/solr-search/restaurantcore/dataimport?command=full-import&clean=true&wt=json
 3) Go: http://localhost:8080/solr-search/admin
 
+
+Examples:
+* Query all - http://localhost:8080/solr-search/restaurantcore/select?q=*%3A*&fl=score,*&wt=json
+* Simple sort by popularity - http://localhost:8080/solr-search/restaurantcore/select?q=*%3A*&fl=score,*&wt=json&sort=rating%20desc
+* Function query for single females
+** As a sort - http://localhost:8080/solr-search/restaurantcore/select?q=*%3A*&fl=score,*&wt=json&sort=product(female,%20unmarried)%20desc
+** As a score - http://localhost:8080/solr-search/restaurantcore/select?q={!func}product(female,%20unmarried)&fl=score,*&wt=json
+** TODO: As a boost query

@@ -22,7 +22,7 @@
 
 		<!-- this entity is the 'root' entity. -->
 
-		<entity name="bar" pk="ID" query="select * from nyc_bars">
+		<entity name="bar" pk="ID" query="SELECT * FROM NYC_BARS, NYC_ZIPS WHERE NYC_BARS.ZIP = NYC_ZIPS.ZIP;">
 			<field column="ID" name="id" />
 			<field column="NAME" name="name" />
 			<field column="ADDRESS" name="address" />
@@ -40,6 +40,17 @@
 			<field column="RATING" name="rating" />
 			<field column="WIFI" name="wifi" />
 			
+			<field column="NEIGHBORHOOD" name="neighborhood" />
+			<field column="POPULATION" name="population" />
+			<field column="DENSITY" name="density" />
+			<field column="INCOME" name="income" />
+			<field column="MALE" name="male" />
+			<field column="FEMALE" name="female" />
+			<field column="UNMARRIED" name="unmarried" />
+			<field column="MARRIED" name="married" />
+			<field column="SEPARATED" name="separated" />
+			<field column="WIDOWED" name="widowed" />
+			<field column="DIVORCED" name="divorced" />
 		</entity>
 		
 	</document>

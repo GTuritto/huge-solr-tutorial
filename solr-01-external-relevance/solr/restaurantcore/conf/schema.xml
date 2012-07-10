@@ -140,6 +140,18 @@
 		<field name="price" type="tint" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="rating" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
 		<field name="wifi" type="boolean" indexed="true" stored="true" multiValued="false" required="false"/>
+		
+		<field name="neighborhood" type="string" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="population" type="tint" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="density" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="income" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="male" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="female" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="unmarried" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="married" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="separated" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="widowed" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
+		<field name="divorced" type="sfloat" indexed="true" stored="true" multiValued="false" required="false"/>
 
         <field name="location" type="location" indexed="true" stored="true" required="false" multiValued="false"/>
 		<field name="location_0_coordinate" type="double" indexed="true" stored="true" required="false" multiValued="false" />
