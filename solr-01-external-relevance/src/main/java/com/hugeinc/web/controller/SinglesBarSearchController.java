@@ -43,12 +43,12 @@ public class SinglesBarSearchController {
   }
 
   @RequestMapping(value = "", method = RequestMethod.GET)
-  public ModelAndView searchHome(@RequestParam(value="pageNum", defaultValue = "1") Integer pageNumber) {
+  public ModelAndView searchHome(@RequestParam(value="pageNumber", defaultValue = "1") Integer pageNumber) {
     return search(new SearchForm(), pageNumber);
   }
   
   @RequestMapping(value = "", method = RequestMethod.POST)
-  public ModelAndView search(@Valid SearchForm searchForm, BindingResult result, @RequestParam(value="pageNum", defaultValue = "1") Integer pageNumber) {
+  public ModelAndView search(@Valid SearchForm searchForm, BindingResult result, @RequestParam(value="pageNumber", defaultValue = "1") Integer pageNumber) {
     if (result.hasErrors()) {
       ModelAndView bad = new ModelAndView("SearchFormError");
       bad.addObject("errors", result.getAllErrors());

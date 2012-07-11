@@ -60,5 +60,9 @@ public class SearchForm {
   public void setSortType(String sortType) {
     this.sortType = sortType;
   }
-   
+  @Override
+  public String toString() {
+    return "SearchForm [queryText=" + queryText + ", gender=" + gender + ", rating=" + rating + ", desiredGender=" + desiredGender + ", sortType=" + sortType
+        + ", barSortType=" + barSortType + ", pageNumber=" + pageNumber + "]";
+  }
 }

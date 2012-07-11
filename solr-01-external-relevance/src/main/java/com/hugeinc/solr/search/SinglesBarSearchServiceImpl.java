@@ -33,7 +33,7 @@ public class SinglesBarSearchServiceImpl implements SinglesBarSearchService {
   public BarDataSearchResults search(SearchForm searchForm) throws SolrServerException {
     SolrQuery query = queryFactory.createQuery(searchForm);
     QueryResponse response = solrServer.query(query);
-    return new BarDataSearchResults(response);
+    return new BarDataSearchResults(response, searchForm);
   }
 
   
