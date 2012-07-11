@@ -14,10 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
 import com.hugeinc.solr.data.BarData;
+import com.hugeinc.solr.data.BarDataSearchResults;
 import com.hugeinc.solr.search.BarSearchException;
 import com.hugeinc.solr.search.SinglesBarSearchService;
 import com.hugeinc.web.form.BarSortType;
@@ -41,28 +43,63 @@ public class SinglesBarSearchController {
   }
 
   @RequestMapping(value = "", method = RequestMethod.GET)
-  public ModelAndView searchHome() {
-    return search(new SearchForm());
+  public ModelAndView searchHome(@RequestParam(value="pageNum", defaultValue = "1") Integer pageNumber) {
+    return search(new SearchForm(), pageNumber);
   }
   
   @RequestMapping(value = "", method = RequestMethod.POST)
-  public ModelAndView search(@Valid SearchForm searchForm, BindingResult result) {
+  public ModelAndView search(@Valid SearchForm searchForm, BindingResult result, @RequestParam(value="pageNum", defaultValue = "1") Integer pageNumber) {
     if (result.hasErrors()) {
       ModelAndView bad = new ModelAndView("SearchFormError");
       bad.addObject("errors", result.getAllErrors());
       return bad;
     }
-    return search(searchForm);
+    return search(searchForm, pageNumber);
   }
 
-  public static String getDiv(BarData barData, DesiredGenderType desiredGender) {
+
+  private ModelAndView search(SearchForm searchForm, Integer pageNumber) {
+    //parse gender, sort type
+    if ("male".equals(searchForm.getGender())) {
+      searchForm.setDesiredGender(DesiredGenderType.MALE);
+    } else {
+      searchForm.setDesiredGender(DesiredGenderType.FEMALE);
+    }
+    searchForm.setPageNumber(pageNumber);
+    
+    if("popularity".equals(searchForm.getSortType())) {
+      searchForm.setBarSortType(BarSortType.RATING);
+    } else if ("gold_digger".equals(searchForm.getSortType())) {
+      searchForm.setBarSortType(BarSortType.GOLD_DIGGER_SCORE);
+    } else {
+      searchForm.setBarSortType(BarSortType.COURTSHIP_SCORE);
+    }
+    Collection<BarData> results;
+    List<String> resultsDivs = Lists.newArrayList();
+    try {
+      BarDataSearchResults resultSet = searchService.search(searchForm);
+      results = resultSet.getResults();
+      for (BarData result : results) {
+        resultsDivs.add(getDiv(result, searchForm.getDesiredGender()));
+      }
+    } catch (SolrServerException e) {
+      throw new BarSearchException("solr failed during search " + searchForm, e);
+    }
+    ModelAndView searchResultPage = new ModelAndView("SearchResultPage");
+    searchResultPage.addObject("results", resultsDivs);
+    searchResultPage.addObject("pageNumber", searchForm.getPageNumber());
+    return searchResultPage;
+  }
+  
+  
+  public String getDiv(BarData barData, DesiredGenderType desiredGender) {
     String output = "<div><h2>" + barData.getName() + "</h2>";
     output += "<p id=\"links_" + barData.getId() + "\" class=\"links\"></p>";
     output += "<p>" + getSnippet(barData, desiredGender) + "</p></div>";
     return output;
   };
   
-  private static String getSnippet(BarData barData, DesiredGenderType desiredGender) {
+  private String getSnippet(BarData barData, DesiredGenderType desiredGender) {
       String output = "";
       output += barData.getAddress();
       if (!isEmpty(barData.getAddressExtended())) {
@@ -95,34 +132,4 @@ public class SinglesBarSearchController {
       return output;
     };
 
-  private ModelAndView search(SearchForm searchForm) {
-    //parse gender, sort type
-    if ("male".equals(searchForm.getGender())) {
-      searchForm.setDesiredGender(DesiredGenderType.MALE);
-    } else {
-      searchForm.setDesiredGender(DesiredGenderType.FEMALE);
-    }
-    
-    if("popularity".equals(searchForm.getSortType())) {
-      searchForm.setBarSortType(BarSortType.RATING);
-    } else if ("gold_digger".equals(searchForm.getSortType())) {
-      searchForm.setBarSortType(BarSortType.GOLD_DIGGER_SCORE);
-    } else {
-      searchForm.setBarSortType(BarSortType.COURTSHIP_SCORE);
-    }
-    Collection<BarData> results;
-    List<String> resultsDivs = Lists.newArrayList();
-    try {
-      results = searchService.search(searchForm);
-      for (BarData result : results) {
-        resultsDivs.add(getDiv(result, searchForm.getDesiredGender()));
-      }
-    } catch (SolrServerException e) {
-      throw new BarSearchException("solr failed during search " + searchForm, e);
-    }
-    ModelAndView searchResultPage = new ModelAndView("SearchResultPage");
-    searchResultPage.addObject("results", resultsDivs);
-    searchResultPage.addObject("pageNumber", searchForm.getPageNumber());
-    return searchResultPage;
-  }
 }

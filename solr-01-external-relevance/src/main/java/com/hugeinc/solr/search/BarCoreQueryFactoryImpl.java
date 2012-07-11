@@ -21,6 +21,7 @@ public class BarCoreQueryFactoryImpl implements SolrQueryFactory<SearchForm>, Ba
   @Override
   public SolrQuery createQuery(SearchForm searchForm) {
     SolrQuery query = new SolrQuery();
+    query.setStart(1 + ((searchForm.getPageNumber() - 1) * 10));
     query.addField("*");
     query.addField("score");
     switch(searchForm.getBarSortType()) {
