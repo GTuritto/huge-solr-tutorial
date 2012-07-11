@@ -6,3 +6,4 @@ tmp/
 target/
 solr/barcore/data/index
 *.sw[op]
+.DS_Store

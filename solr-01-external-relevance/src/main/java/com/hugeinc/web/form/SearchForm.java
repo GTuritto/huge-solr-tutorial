@@ -12,12 +12,10 @@ public class SearchForm {
   private String queryText;
   @NotNull
   private String gender;
-  private String[] neighborhoods;
   private Float rating;
-  private Float price;
   private DesiredGenderType desiredGender = DesiredGenderType.FEMALE;
-  private String sortType = "popularity";
-  private BarSortType barSortType = BarSortType.POPULARITY;
+  private String sortType = "rating";
+  private BarSortType barSortType = BarSortType.RATING;
   private Integer pageNumber = 0;
   
   public String getQueryText() {
@@ -32,23 +30,11 @@ public class SearchForm {
   public void setGender(String gender) {
     this.gender = gender;
   }
-  public String[] getNeighborhoods() {
-    return neighborhoods;
-  }
-  public void setNeighborhoods(String[] neighborhoods) {
-    this.neighborhoods = neighborhoods;
-  }
   public Float getRating() {
     return rating;
   }
   public void setRating(Float rating) {
     this.rating = rating;
-  }
-  public Float getPrice() {
-    return price;
-  }
-  public void setPrice(Float price) {
-    this.price = price;
   }
   public DesiredGenderType getDesiredGender() {
     return desiredGender;

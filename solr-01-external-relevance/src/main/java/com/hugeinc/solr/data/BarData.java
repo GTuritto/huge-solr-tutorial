@@ -1,9 +1,12 @@
 package com.hugeinc.solr.data;
 
+import java.io.Serializable;
+
 import org.apache.solr.client.solrj.beans.Field;
 
-public class BarData {
+public class BarData implements Serializable {
   
+  private static final long serialVersionUID = 194853959391393386L;
   @Field("id")
   private String id;
   @Field("name")
