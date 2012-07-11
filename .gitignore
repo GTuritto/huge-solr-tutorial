@@ -1,3 +1,4 @@
 test.trace.db
 dataimport.properties
 nyc.trace.db
+nyc.lock.db

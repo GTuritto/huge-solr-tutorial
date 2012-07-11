@@ -13,8 +13,8 @@ Examples:
 * Query all - http://localhost:8080/solr-search/barcore/select?q=*%3A*&fl=score,*&wt=json
 * Simple sort by popularity - http://localhost:8080/solr-search/barcore/select?q=*%3A*&fl=score,*&wt=json&sort=rating%20desc
 * Function query for single females
-** As a sort - http://localhost:8080/solr-search/barcore/select?q=*%3A*&fl=score,*&wt=json&sort=product(female,%20unmarried)%20desc
-** As a score - http://localhost:8080/solr-search/barcore/select?q={!func}product(female,%20unmarried)&fl=score,*&wt=json
+** As a sort - http://localhost:8080/solr-search/barcore/select?q=*%3A*&fl=score,*&wt=json&sort=product(div(female,%20male),%20rating,%20unmarried)%20desc
+** As a score - http://localhost:8080/solr-search/barcore/select?q={!func}product(div(female,%20male),%20rating,%20unmarried)&fl=score,*&wt=json
 * External Field - http://localhost:8080/solr-search/barcore/select?q={!func}votes&fl=score,*&wt=json
 * External Field w/ other fields - http://localhost:8080/solr-search/barcore/select?q={!func}sum(votes,%20rating)&fl=score,*&wt=json
 
