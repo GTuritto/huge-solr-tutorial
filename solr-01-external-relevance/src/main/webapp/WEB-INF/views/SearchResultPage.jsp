@@ -14,7 +14,7 @@
 	<div class = "span2">
 	</div>
 	<div class="span9">
-	<form:form method="POST" commandName="searchForm" modelAttribute="searchForm" action="search">
+	<form:form method="GET" commandName="searchForm" modelAttribute="searchForm" action="search">
 		<form:errors path="*" cssClass="errorblock" element="div" />
 		<table>
 			<tr>

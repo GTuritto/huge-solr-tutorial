@@ -1,6 +1,5 @@
 package com.hugeinc.web.form;
 
-import javax.validation.constraints.NotNull;
 
 /**
  * Singles bar search form
@@ -10,13 +9,12 @@ import javax.validation.constraints.NotNull;
 public class SearchForm {
   //1) search term (optional) 2) desired gender 3) neighborhood (optional) 4) rating and 5) price 6) page num
   private String queryText;
-  @NotNull
   private String gender;
   private Float rating;
   private DesiredGenderType desiredGender = DesiredGenderType.FEMALE;
   private String sortType = "rating";
   private BarSortType barSortType = BarSortType.RATING;
-  private Integer pageNumber = 0;
+  private Integer pageNumber = 1;
   
   public String getQueryText() {
     return queryText;

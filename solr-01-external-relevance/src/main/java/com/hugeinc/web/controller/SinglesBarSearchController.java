@@ -10,11 +10,9 @@ import javax.validation.Valid;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
@@ -43,29 +41,18 @@ public class SinglesBarSearchController {
   }
 
   @RequestMapping(value = "", method = RequestMethod.GET)
-  public ModelAndView searchHome(@RequestParam(value="pageNumber", defaultValue = "1") Integer pageNumber) {
-    return search(new SearchForm(), pageNumber);
+  public ModelAndView searchHome(@Valid SearchForm searchForm) {
+    return search(searchForm);
   }
   
-  @RequestMapping(value = "", method = RequestMethod.POST)
-  public ModelAndView search(@Valid SearchForm searchForm, BindingResult result, @RequestParam(value="pageNumber", defaultValue = "1") Integer pageNumber) {
-    if (result.hasErrors()) {
-      ModelAndView bad = new ModelAndView("SearchFormError");
-      bad.addObject("errors", result.getAllErrors());
-      return bad;
-    }
-    return search(searchForm, pageNumber);
-  }
 
-
-  private ModelAndView search(SearchForm searchForm, Integer pageNumber) {
+  private ModelAndView search(SearchForm searchForm) {
     //parse gender, sort type
     if ("male".equals(searchForm.getGender())) {
       searchForm.setDesiredGender(DesiredGenderType.MALE);
-    } else {
+    } else if ("female".equals(searchForm.getGender())){
       searchForm.setDesiredGender(DesiredGenderType.FEMALE);
     }
-    searchForm.setPageNumber(pageNumber);
     
     if("popularity".equals(searchForm.getSortType())) {
       searchForm.setBarSortType(BarSortType.RATING);
