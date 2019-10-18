@@ -9,7 +9,7 @@
 
 	<properties>
 		<spring.version>3.1.1.RELEASE</spring.version>
-		<solr.version>4.0-SNAPSHOT</solr.version>
+		<solr.version>8.2.0</solr.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<solr.index.dir>/tmp/solr</solr.index.dir>
 	</properties>
